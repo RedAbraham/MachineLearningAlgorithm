@@ -40,7 +40,35 @@ if __name__ == "__main__":
         unaryLinearRegression.GD(0.01)
         print(i, "Cost: ", unaryLinearRegression.Cost())
 
-    # Model Evaluation: Accuracy Precision Recall F1_score Confusion_Matrix Receiver_Operating_Characteristic
+    # Model Evaluation: MSE MAE R^2 MAPE
+    # ①MSE 1/N*(y-y_predict)^2
+    total = 0
+    for val in val_datas:
+        y_predict = unaryLinearRegression.Predict(val[0])
+        total += (val[1]-y_predict)**2
+    print("MES: ", total/val_datas.shape[0])
 
+    #②MAE 1/N*|y-y_predict|
+    total = 0
+    for val in datas:
+        y_predict = unaryLinearRegression.Predict(val[0])
+        total += abs(val[1]-y_predict)
+    print("MAS: ", total/val_datas.shape[0])
+
+    # ③ R^2
+    total1 , total2 = 0, 0
+    y_mean = val_datas.mean(axis=0)[1]
+    for val in val_datas:
+        y_predict = unaryLinearRegression.Predict(val[0])
+        total1 += (val[1]-y_predict)**2
+        total2 += (y_predict-y_mean)**2
+    print("R^2: ", 1-(total1/total2))
+
+    # ④MAPE
+    total = 0
+    for val in datas:
+        y_predict = unaryLinearRegression.Predict(val[0])
+        total += abs((val[1]-y_predict)/val[1])
+    print("MAPE: ", total/val_datas.shape[0]*100, "%")
 
     pass
