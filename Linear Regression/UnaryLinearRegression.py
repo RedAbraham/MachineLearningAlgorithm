@@ -24,7 +24,7 @@ class UnaryLinearRegression:
             coss += self.Loss(data[0], data[1])
         return coss/datas.shape[0]
 
-    def GD(self, k):
+    def GD(self, k): # k is learning rate
         temp1 = lambda datas:sum(self.W[0]+self.W[1]*data[0]-data[1] for data in datas)
         temp = self.W[0]
         self.W[0] = self.W[0] - k*temp1(self.datas)/datas.shape[0]  # b = b-E(b+ax-y)

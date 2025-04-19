@@ -1,0 +1,8 @@
+weather,temperature,humidity,windy,is_sport
+sunny,hot,high,low,yes
+cloudy,warm,high,high,yes
+rainy,cold,high,high,no
+sunny,warm,low,low,yes
+sunny,hot,medium,low,no
+cloudy,hot,medium,high,yes
+rainy,warm,high,low,no
